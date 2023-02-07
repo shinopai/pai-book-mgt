@@ -1,0 +1,18 @@
+<%= render partial: 'shared/page_title', locals: { page_title: '' } %>
+
+<main class="main">
+  <div class="wrap">
+    <div class="book-top flex">
+      <div class="book-top__box before">
+        <h2 class="book-top__heading">蔵書一覧</h2>
+        <ul class="book-top-list">
+          <li>
+
+          </li>
+        </ul>
+        <%= link_to image_tag('ico_add.webp'), books_create_path, class: 'book-top__ico' %>
+      </div>
+      <div class="book-top__box after">box</div>
+    </div>
+  </div>
+</main>

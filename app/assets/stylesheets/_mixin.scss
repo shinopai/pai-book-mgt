@@ -1,0 +1,35 @@
+/* media query */
+@mixin mq($breakpoint) {
+  @media #{map-get($breakpoints, $breakpoint)} {
+    @content;
+  }
+}
+
+/* centering */
+@mixin centering() {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* basic heading */
+@mixin basic-heading() {
+  font-size: 20px;
+  font-weight: bold;
+  @content;
+}
+
+/* font size 20px */
+@mixin fs-20() {
+  font-size: clamp(1.8rem, 1.718rem + 0.41vw, 2rem);
+}
+
+/* font size 16px */
+@mixin fs-16() {
+  font-size: clamp(1.4rem, 1.318rem + 0.41vw, 1.6rem);
+}
+
+/* font size 14px */
+@mixin fs-14() {
+  font-size: clamp(1.2rem, 1.118rem + 0.41vw, 1.4rem);
+}

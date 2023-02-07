@@ -1,0 +1,22 @@
+<header class="header">
+  <div class="wrap">
+    <div class="header__inner flex">
+      <%= link_to root_path, class: 'contents' do %>
+      <figure class="header__logo">
+        <%= image_tag 'logo_site.webp', alt: 'PaiBook' %>
+      </figure>
+      <% end %>
+      <ul class="header__nav flex">
+        <li>
+          <%= link_to 'Home', root_path, class: 'header__link' %>
+        </li>
+        <li>
+          <%= link_to 'About', '#', class: 'header__link' %>
+        </li>
+        <li>
+          <%= link_to 'Help', '#', class: 'header__link' %>
+        </li>
+      </ul>
+    </div>
+  </div>
+</header>
