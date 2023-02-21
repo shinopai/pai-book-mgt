@@ -5,14 +5,29 @@
     <div class="book-top flex">
       <div class="book-top__box before">
         <h2 class="book-top__heading">蔵書一覧</h2>
+        <% if @books.any? %>
         <ul class="book-top-list">
-          <li>
-
+          <% @books.each do |book| %>
+          <li class="book-top-list__item">
+            <%= link_to book.title, books_show_path(book), class: 'book-top-list__link' %>
           </li>
+          <% end %>
         </ul>
-        <%= link_to image_tag('ico_add.webp'), books_create_path, class: 'book-top__ico' %>
+        <% end %>
+        <%= link_to image_tag('ico_add.webp'), books_create_path, class: 'book-top__ico iframe' %>
       </div>
       <div class="book-top__box after">box</div>
     </div>
   </div>
 </main>
+
+<script>
+  $(function () {
+    // モーダル定義
+    $('.iframe').modaal({
+      type: 'iframe',
+      width: 900,
+      height: 500,
+    });
+  })
+</script>

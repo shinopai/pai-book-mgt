@@ -1,0 +1,95 @@
+<%= render partial: 'shared/page_title', locals: { page_title: @book.title } %>
+
+<main class="main">
+  <div class="book-show">
+    <div class="wrap">
+      <div class="book-show-head flex">
+        <div class="book-show-head__item--before">
+          <h2 class="book-show-head__title"><%= @book.title %></h2>
+          <p class="book-show-head__data">著者:&nbsp;<%= @book.author.name %>・<%= @book.published_at.strftime('%Y') %></p>
+        </div>
+        <figure class="book-show-head__img">
+          <% if @book.image? %>
+          <%= image_tag @book.image.url %>
+          <% else %>
+          <%= image_tag 'img_book.webp' %>
+          <% end %>
+        </figure>
+      </div>
+
+      <div class="book-show-body flex">
+        <div class="book-show-body__item--before">
+          <div class="book-show-body-box">
+            <h3 class="book-show-body-box__heading">この版について</h3>
+            <dl class="book-show-body-box__content flex">
+              <div>
+                <dt>ページ数:</dt>
+                <dd><%= @book.page_count %></dd>
+              </div>
+              <div>
+                <dt>出版日:</dt>
+                <dd><%= @book.published_at.strftime('%Y') %></dd>
+              </div>
+              <div>
+                <dt>出版社:</dt>
+                <dd><%= @book.publisher.name %></dd>
+              </div>
+              <div>
+                <dt>形式:</dt>
+                <dd><%= @book.book_format.name %></dd>
+              </div>
+              <div>
+                <dt>言語:</dt>
+                <dd><%= @book.book_language.name %></dd>
+              </div>
+              <div>
+                <dt>作者:</dt>
+                <dd><%= @book.author.name %></dd>
+              </div>
+            </dl>
+          </div>
+          <div class="book-show-body-box">
+            <h3 class="book-show-body-box__heading">他の版</h3>
+            <% if @another_book.any? %>
+            <div class="book-show-body-box-list flex no-bottom-radious">
+              <% @another_book.each do |book| %>
+              <figure class="book-show-body-box-list__item">
+                <% if book.image? %>
+                <%= image_tag book.image.url %>
+                <% else %>
+                <%= image_tag 'img_book.webp' %>
+                <% end %>
+                <figcaption>
+                  <%= book.title %>
+                </figcaption>
+                <p><%= book.published_at %></p>
+                <p><%= book.publisher.name %></p>
+                <p><%= book.book_format.name %></p>
+                <p><%= book.page_count %>ページ</p>
+                <%= link_to '詳細情報', books_show_path(book), class: 'book-show-body-box-list__link' %>
+              </figure>
+              <% end %>
+            </div>
+            <div class="book-show-body-box-list__footer">
+              <%= link_to 'その他の版', '#' %>
+            </div>
+            <% else %>
+            <p class="book-show-body-box__txt">他の書籍はありません</p>
+            <% end %>
+          </div>
+        </div>
+        <div class="book-show-body__item--after">
+          <div class="book-show-body-box">
+            <h3 class="book-show-body-box__heading">作品について</h3>
+            <dl class="book-show-body-box__content">
+              <dt>初版発行:</dt>
+              <dd><%= l @book.published_at %></dd>
+              <dt>言語:</dt>
+              <dd><%= @book.book_language.name %></dd>
+            </dl>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

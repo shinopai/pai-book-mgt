@@ -84,3 +84,6 @@ gem 'cssbundling-rails'
 
 # upload image
 gem 'carrierwave'
+
+# generate test data
+gem 'faker'

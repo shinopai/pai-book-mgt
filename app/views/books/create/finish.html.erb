@@ -1,0 +1,13 @@
+<%= render partial: 'shared/page_title', locals: { page_title: '登録完了' } %>
+
+<main class="main">
+  <div class="wrap">
+    <!-- flash message -->
+    <% if flash[:notice] %>
+    <div class="flash-msg">
+      <p class="flash-msg__txt"><%= flash[:notice] %></p>
+      <%= link_to '閉じる', root_path, class: 'flash-msg__btn iframe', target: '_top' %>
+    </div>
+    <% end %>
+  </div>
+</main>

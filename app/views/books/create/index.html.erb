@@ -3,24 +3,29 @@
 <main class="main">
   <div class="wrap">
     <%= form_with model: @book, url: books_create_confirm_path, class: 'book-form', local: true do |new_book| %>
+    <%= render "/shared/error_messages", model: @book %>
     <div class="book-form__inner">
       <h2 class="book-form__heading">書籍登録</h2>
       <div class="book-form__item">
         <%= new_book.text_field :title, class: 'book-form__text', placeholder: '書籍名' %>
       </div>
       <div class="book-form__item">
-        <%= new_book.number_field :title, class: 'book-form__number', placeholder: 'ページ数' %>
+        <%= new_book.number_field :page_count, class: 'book-form__number', placeholder: 'ページ数', min: 0 %>
       </div>
       <div class="book-form__item">
-        <%= new_book.text_field :title, onfocus: "this.type='date'", onblur: "this.type='text'", class: 'book-form__date', placeholder: '出版日' %>
+        <%= new_book.text_field :published_at, onfocus: "this.type='date'", onblur: "this.type='text'", class: 'book-form__date', placeholder: '出版日' %>
       </div>
       <div class="book-form__item image">
         <%= new_book.label :image, '書籍画像' %>
-        <%= new_book.file_field :image, class: 'book-form__file' %>
+        <%= new_book.file_field :image, class: 'book-form__file', :value => @book.image.url %>
         <div id="image_preview"></div>
       </div>
       <div class="book-form__item">
-        <%= new_book.text_field :title, class: 'book-form__text', placeholder: '著者名' %>
+        <% if @author.nil? %>
+        <%= new_book.text_field :author_id, class: 'book-form__text', placeholder: '著者名' %>
+        <% else %>
+        <%= new_book.text_field :author_id, :value => @author.name, class: 'book-form__text', placeholder: '著者名' %>
+        <% end %>
       </div>
       <div class="book-form__item">
         <%= new_book.collection_select :book_format_id, BookFormat.all, :id, :name, {prompt: "書籍形式"}, :class => 'book-form__select' %>
@@ -32,7 +37,7 @@
         <%= new_book.collection_select :book_language_id, BookLanguage.all, :id, :name, {prompt: "書籍言語"}, :class => 'book-form__select' %>
       </div>
       <div class="book-form__item">
-        <%= new_book.submit '確認する', class: 'book-form__submit' %>
+        <%= new_book.submit '確認', class: 'book-form__submit' %>
       </div>
     </div>
     <% end %>

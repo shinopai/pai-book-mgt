@@ -46,10 +46,20 @@
     color: #aeaeae;
   }
   &-list {
+    margin-top: 30px;
+    &__item {
+      @include set-border(1px, solid, #f2f2f2);
+      padding: 10px 0 10px 15px;
+    }
+    &__link {
+      @include fs-16;
+      color: $color-green;
+    }
   }
   &__ico {
     width: 50px;
     margin-left: auto;
+    margin-top: 20px;
   }
 }
 
@@ -81,7 +91,7 @@
     margin-bottom: 20px;
     input,
     select {
-      border: 1px solid #c2c2c2;
+      @include set-border(1px, solid, #c2c2c2);
       border-radius: 5px;
       padding: 5px 0 5px 10px;
     }
@@ -110,7 +120,7 @@
     width: 50%;
   }
   &__submit {
-    background-color: #26a69a;
+    background-color: $color-green;
     color: #fff;
     width: 240px;
     padding: 10px 0 !important;
@@ -119,6 +129,207 @@
     cursor: pointer;
     &:hover {
       opacity: 0.8;
+    }
+  }
+}
+
+/* error message */
+.err-msg {
+  @include fs-12;
+  text-align: center;
+  font-weight: bold;
+  li {
+    color: #eb4234;
+  }
+}
+
+/* confirm page */
+.book-confirm {
+  @include fs-16;
+  background-color: #fff;
+  padding: 50px 20px;
+  margin: 0;
+  dt {
+    font-weight: bold;
+  }
+  dd {
+    margin-bottom: 15px;
+  }
+  &__img {
+    width: 150px;
+  }
+  &__footer {
+    margin-top: 30px;
+  }
+  &__form {
+    width: 100%;
+    justify-content: center;
+    column-gap: 20px;
+  }
+  &__btn {
+    &--fix {
+      @include set-border(1px, solid, $color-green);
+      @include fs-14;
+      background-color: transparent;
+      color: $color-green;
+      width: 150px;
+      border-radius: 5px;
+      padding: 5px 0;
+      cursor: pointer;
+    }
+    &--submit {
+      @include fs-14;
+      background-color: $color-green;
+      color: #fff;
+      width: 150px;
+      border: none;
+      border-radius: 5px;
+      padding: 5px 0;
+      cursor: pointer;
+    }
+  }
+}
+
+/* flash message */
+.flash-msg {
+  @include centering;
+  background-color: #fff;
+  height: 100vh;
+  flex-direction: column;
+  row-gap: 50px;
+  &__txt {
+    @include fs-20;
+    margin: 0;
+  }
+  &__btn {
+    @include set-border(1px, solid, $color-green);
+    @include fs-14;
+    width: 120px;
+    text-align: center;
+    border-radius: 5px;
+    padding: 5px 0;
+    color: $color-green;
+  }
+}
+
+/* book show */
+.book-show {
+  &-head {
+    background-color: #fff;
+    padding: 20px 10px;
+    &__item--before {
+      width: 70%;
+    }
+    &__img {
+      width: 30%;
+      img {
+        width: 60%;
+        object-fit: contain;
+        height: auto;
+        border-radius: 10px;
+      }
+    }
+    &__title {
+      @include fs-24;
+    }
+    &__data {
+      @include fs-16;
+    }
+  }
+  &-body {
+    margin-top: 40px;
+    justify-content: space-between;
+    &__item {
+      &--before {
+        width: 65%;
+      }
+      &--after {
+        width: 30%;
+      }
+    }
+    &-box {
+      background-color: #fff;
+      padding: 15px 10px;
+      &__heading {
+        @include fs-16;
+        font-weight: normal;
+        padding-left: 20px;
+      }
+      &__content {
+        @include set-border(1.5px, solid, #f5f6f7);
+        @include fs-14;
+        border-radius: 10px;
+        padding: 20px;
+        row-gap: 5px;
+        div {
+          @include fs-14;
+          width: 50%;
+        }
+        dt {
+          float: left;
+          color: #70757a;
+        }
+        dd {
+          margin-left: 100px;
+        }
+      }
+      &-list {
+        @include set-border(1.5px, solid, #f5f6f7);
+        border-radius: 10px;
+        &__item {
+          width: 25%;
+          figcaption {
+            @include fs-14;
+            text-align: center;
+            margin-top: 10px;
+          }
+          p {
+            @include fs-12;
+            text-align: center;
+            border-top: 1px solid #f5f6f7;
+            border-bottom: 1px solid #f5f6f7;
+            padding: 8px 0;
+          }
+        }
+        &__link {
+          @include fs-14;
+          @include set-border(1px, solid, #f5f6f7);
+          border-radius: 100vh;
+          width: 110px;
+          margin: 10px auto;
+          padding: 5px 0;
+          text-align: center;
+          position: relative;
+          &::before {
+            content: "";
+            background: url("ico_arrow.webp") no-repeat;
+            background-size: contain;
+            display: inline-block;
+            width: 18px;
+            height: 18px;
+            position: absolute;
+            left: 0.5em;
+            top: calc(50% - 18px / 2);
+          }
+          &:hover {
+            background-color: #f2f2f2;
+          }
+        }
+        &__footer {
+          @include set-border(1.5px, solid, #f5f6f7);
+          @include fs-14;
+          border-top: none;
+          border-radius: 0 0 10px 10px;
+          padding: 20px 0;
+          text-align: center;
+          a {
+            color: #1a73e8;
+          }
+        }
+        &.no-bottom-radious {
+          border-radius: 10px 10px 0 0;
+        }
+      }
     }
   }
 }

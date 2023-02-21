@@ -1,0 +1,12 @@
+ja:
+  activerecord:
+    attributes:
+      book:
+        title: "書籍名"
+        page_count: "ページ数"
+        published_at: "出版日"
+        image: "書籍画像"
+        book_format_id: "書籍形式"
+        publisher_id: "出版社"
+        book_language_id: "書籍言語"
+        author_id: "著者名"

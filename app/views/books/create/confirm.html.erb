@@ -1,0 +1,41 @@
+<%= render partial: 'shared/page_title', locals: { page_title: '登録内容確認' } %>
+
+<main class="main">
+  <div class="wrap">
+    <dl class="book-confirm">
+      <dt>書籍名</dt>
+      <dd><%= @book.title %></dd>
+      <dt>ページ数</dt>
+      <dd><%= @book.page_count %></dd>
+      <dt>出版日</dt>
+      <dd><%= l @book.published_at %></dd>
+      <dt>形式</dt>
+      <dd><%= @book.book_format.name %></dd>
+      <dt>出版社</dt>
+      <dd><%= @book.publisher.name %></dd>
+      <dt>言語</dt>
+      <dd><%= @book.book_language.name %></dd>
+      <dt>著者</dt>
+      <dd><%= @author.name %></dd>
+      <% if @book.image? %>
+      <dt>画像</dt>
+      <dd><%= image_tag @book.image.url, class: 'book-confirm__img' %></dd>
+      <% end %>
+      <div class="book-confirm__footer">
+        <%= form_with model: @book, url: books_create_submit_path, class: 'book-confirm__form flex', local: true do |book| %>
+        <!-- postするparamater指定 -->
+        <%= book.hidden_field :title, :value => @book.title %>
+        <%= book.hidden_field :page_count, :value => @book.page_count %>
+        <%= book.hidden_field :published_at, :value => @book.published_at %>
+        <%= book.hidden_field :book_format_id, :value => @book.book_format.id %>
+        <%= book.hidden_field :publisher_id, :value => @book.publisher.id %>
+        <%= book.hidden_field :book_language_id, :value => @book.book_language.id %>
+        <%= book.hidden_field :author_id, :value => @author.name %>
+        <%= book.hidden_field :image, :value => @book.image_identifier %>
+        <%= book.submit '修正', class: 'book-confirm__btn--fix' %>
+        <%= book.submit '登録', class: 'book-confirm__btn--submit' %>
+        <% end %>
+      </div>
+    </dl>
+  </div>
+</main>
