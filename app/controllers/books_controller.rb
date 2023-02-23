@@ -1,6 +1,7 @@
 class BooksController < ApplicationController
+  before_action :set_q, only: %i(index search)
   def index
-    @books = Book.all
+    @books = Book.all.order(id: :desc).page(params[:page])
   end
 
   def show
@@ -86,6 +87,10 @@ class BooksController < ApplicationController
     end
   end
 
+  def search
+    @books = @q.result
+  end
+
   # private
   private
   def book_params
@@ -100,5 +105,9 @@ class BooksController < ApplicationController
       :author_id,
       authors_attributes: [:name]
     )
+  end
+
+  def set_q
+    @q = Book.ransack(params[:q])
   end
 end

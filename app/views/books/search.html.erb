@@ -1,10 +1,10 @@
-<%= render partial: 'shared/page_title', locals: { page_title: '' } %>
+<%= render partial: 'shared/page_title', locals: { page_title: '「' + params[:q]['title_cont'] + '」の検索結果' } %>
 
 <main class="main">
   <div class="wrap">
     <div class="book-top flex">
       <div class="book-top__box before">
-        <h2 class="book-top__heading">蔵書一覧</h2>
+        <h2 class="book-top__heading">「<%= params[:q]['title_cont'] %>」の検索結果(<%= @books.size %>件)</h2>
         <% if @books.any? %>
         <ul class="book-top-list">
           <% @books.each do |book| %>
@@ -13,9 +13,9 @@
           </li>
           <% end %>
         </ul>
+        <% else %>
+        <p class="book-top__txt">当てはまる書籍はありません。</p>
         <% end %>
-        <%= paginate @books %>
-        <%= link_to image_tag('ico_add.webp'), books_create_path, class: 'book-top__ico iframe' %>
       </div>
       <div class="book-top__box after">
         <h2 class="book-top__heading">蔵書の検索</h2>
@@ -30,14 +30,3 @@
     </div>
   </div>
 </main>
-
-<script>
-  $(function () {
-    // モーダル定義
-    $('.iframe').modaal({
-      type: 'iframe',
-      width: 900,
-      height: 500,
-    });
-  })
-</script>

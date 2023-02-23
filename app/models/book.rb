@@ -1,4 +1,6 @@
 class Book < ApplicationRecord
+  private_class_method :ransackable_attributes
+
   # relation
   belongs_to :book_format, optional: true
   belongs_to :publisher, optional: true
@@ -23,4 +25,15 @@ class Book < ApplicationRecord
 
   # book image
   mount_uploader :image, BookImageUploader
+
+  # define ransackable attributes
+  def self.ransackable_attributes(auth_object = nil)
+    if auth_object == :admin
+      # whitelist all attributes for admin
+      super
+    else
+      # whitelist only the title and body attributes for other users
+      super & %w(title)
+    end
+  end
 end

@@ -87,3 +87,9 @@ gem 'carrierwave'
 
 # generate test data
 gem 'faker'
+
+# pagination
+gem 'kaminari'
+
+# searching
+gem 'ransack'

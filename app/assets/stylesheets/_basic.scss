@@ -57,6 +57,9 @@ figure {
 table {
   width: 100%;
 }
+:focus {
+  outline: none;
+}
 
 /* basic class */
 .flex {

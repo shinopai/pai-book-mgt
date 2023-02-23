@@ -1,0 +1,32 @@
+<%= render partial: 'shared/page_title', locals: { page_title: @publisher.name + 'の書籍一覧'} %>
+
+<main class="main">
+  <div class="wrap">
+    <div class="book-list">
+      <% @books.each do |book| %>
+      <div class="book-list__item flex">
+        <%= link_to books_show_path(book), class: 'contents' do %>
+        <figure class="book-list__img">
+          <% if book.image? %>
+          <%= image_tag book.image.url %>
+          <% else %>
+          <%= image_tag 'img_book.webp' %>
+          <% end %>
+        </figure>
+        <% end %>
+        <div class="book-list__box">
+          <%= link_to books_show_path(book), class: 'contents' do %>
+          <h2 class="book-list__title">
+            <%= book.title %>
+          </h2>
+          <% end %>
+          <p class="book-list__data">
+            <%= @publisher.name %>・<%= book.published_at.strftime('%Y') %>
+          </p>
+        </div>
+      </div>
+      <% end %>
+      <%= paginate @books %>
+    </div>
+  </div>
+</main>

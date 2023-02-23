@@ -60,6 +60,40 @@
     width: 50px;
     margin-left: auto;
     margin-top: 20px;
+    &--search {
+      width: 25px;
+    }
+  }
+  &-form {
+    margin-top: 10px;
+    &__search {
+      @include fs-14;
+      border-top: none;
+      border-right: none;
+      border-left: none;
+      border-bottom: 1px solid #f2f2f2;
+      width: 100%;
+      padding: 5px 0;
+      &::placeholder {
+        @include fs-14;
+        color: #dbdcdf;
+      }
+    }
+    &__submit {
+      @include fs-14;
+      margin-top: 15px;
+      background-color: $color-green;
+      color: #fff;
+      border: none;
+      width: 50px;
+      padding: 3px 0;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+  }
+  &__txt {
+    @include fs-16;
+    margin-top: 15px;
   }
 }
 
@@ -140,6 +174,23 @@
   font-weight: bold;
   li {
     color: #eb4234;
+  }
+}
+
+/* pagination */
+.pagination {
+  @include fs-16;
+  column-gap: 15px;
+  margin-top: 20px;
+  justify-content: center;
+  padding: 10px 0;
+  .page {
+    &.current {
+      background-color: $color-green;
+      color: #fff;
+      padding: 2px 10px;
+      margin-top: -2px;
+    }
   }
 }
 
@@ -273,6 +324,12 @@
           margin-left: 100px;
         }
       }
+      &__link {
+        color: #1a73e8;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
       &-list {
         @include set-border(1.5px, solid, #f5f6f7);
         border-radius: 10px;
@@ -282,6 +339,10 @@
             @include fs-14;
             text-align: center;
             margin-top: 10px;
+            &:hover {
+              color: #1a73e8;
+              text-decoration: underline;
+            }
           }
           p {
             @include fs-12;
@@ -331,5 +392,32 @@
         }
       }
     }
+  }
+}
+
+/* book list */
+.book-list {
+  background-color: #fff;
+  padding-top: 20px;
+  &__item {
+    margin-bottom: 20px;
+  }
+  &__img {
+    width: 20%;
+  }
+  &__box {
+    width: 80%;
+  }
+  &__title {
+    @include fs-20;
+    margin-top: 10px;
+    color: #1a0dab;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  &__data {
+    @include fs-14;
+    margin-top: 10px;
   }
 }

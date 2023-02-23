@@ -32,7 +32,7 @@
               </div>
               <div>
                 <dt>出版社:</dt>
-                <dd><%= @book.publisher.name %></dd>
+                <dd><%= link_to @book.publisher.name, publishers_books_path(@book.publisher.id), class: 'book-show-body-box__link' %></dd>
               </div>
               <div>
                 <dt>形式:</dt>
@@ -44,7 +44,7 @@
               </div>
               <div>
                 <dt>作者:</dt>
-                <dd><%= @book.author.name %></dd>
+                <dd><%= link_to @book.author.name, authors_books_path(@book.author.id), class: 'book-show-body-box__link' %></dd>
               </div>
             </dl>
           </div>
@@ -54,6 +54,7 @@
             <div class="book-show-body-box-list flex no-bottom-radious">
               <% @another_book.each do |book| %>
               <figure class="book-show-body-box-list__item">
+                <%= link_to books_show_path(book), class: 'contents' do %>
                 <% if book.image? %>
                 <%= image_tag book.image.url %>
                 <% else %>
@@ -62,6 +63,7 @@
                 <figcaption>
                   <%= book.title %>
                 </figcaption>
+                <% end %>
                 <p><%= book.published_at %></p>
                 <p><%= book.publisher.name %></p>
                 <p><%= book.book_format.name %></p>
@@ -71,7 +73,7 @@
               <% end %>
             </div>
             <div class="book-show-body-box-list__footer">
-              <%= link_to 'その他の版', '#' %>
+              <%= link_to 'その他の版', authors_books_path(@book.author.id) %>
             </div>
             <% else %>
             <p class="book-show-body-box__txt">他の書籍はありません</p>
